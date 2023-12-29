@@ -4,6 +4,7 @@ import { InboxStack } from './Routes/InboxStack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DraftsStack } from './Routes/DraftsStack';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -12,7 +13,7 @@ export default function App() {
     <>
     <StatusBar style="auto" />
     <NavigationContainer>
-     <Drawer.Navigator>
+     <Drawer.Navigator screenOptions={{headerShown:false}}>
       <Drawer.Screen name='Inbox' component={InboxStack}/>
       <Drawer.Screen name='Drafts' component={DraftsStack}/>
      </Drawer.Navigator>
