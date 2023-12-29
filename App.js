@@ -5,12 +5,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DraftsStack } from './Routes/DraftsStack';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { IconComponentProvider } from '@react-native-material/core';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
     <StatusBar style="auto" />
     <NavigationContainer>
      <Drawer.Navigator screenOptions={{headerShown:false}}>
@@ -18,7 +20,7 @@ export default function App() {
       <Drawer.Screen name='Drafts' component={DraftsStack}/>
      </Drawer.Navigator>
     </NavigationContainer>
-    </>
+    </IconComponentProvider>
       
   );
 }
