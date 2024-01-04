@@ -1,9 +1,11 @@
-import { Avatar, Box, ListItem, Text } from "@react-native-material/core";
+import { Avatar, Box, FAB, Icon, ListItem, Stack, Text } from "@react-native-material/core";
 import { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, Modal } from "react-native";
 
 
 const Inbox = ({navigation}) => {
+
+  const [modalOpen, setModalOpen] = useState(false)
 
     const [mails,setMails] = useState([
         {id: 1, subject: 'Meeting today', content: 'Monthly meeting performance of the first half'},
@@ -16,8 +18,19 @@ const Inbox = ({navigation}) => {
       console.log(item)
       navigation.push('DetailScreen', {item})
     }
+
+    const handlePress = () => {
+      console.log('pressed')
+      setModalOpen(!modalOpen)
+    }
     return ( 
+      <>
        <Box>
+        <Modal visible={modalOpen} animationType="slide">
+        <Stack fill justify="start" items="center" mt={20}>
+        <FAB icon={props => <Icon name="close" {...props}/>} color="primary" onPress={handlePress}/>
+       </Stack>
+        </Modal>
         <FlatList
         data={mails}
         keyExtractor={(item) => item.id}
@@ -34,6 +47,11 @@ const Inbox = ({navigation}) => {
   }
         />
        </Box>
+       <Stack fill justify="start" items="center" mt={20}>
+        <FAB icon={props => <Icon name="plus" {...props}/>} 
+        color="primary" onPress={handlePress}/>
+       </Stack>
+       </>
      );
 }
  
